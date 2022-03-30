@@ -87,10 +87,10 @@ function AuthProvider({ children }: AuthProviderData) {
         api.defaults.headers.authorization = `Bearer ${response.params.access_token}`;
 
         // call Twitch API's users route
-        const { data } = await api.get<User>('/users');
+        const userResponse = await api.get('/users');
 
         // set user state with response from Twitch API's route "/users"
-        setUser(data);
+        setUser(userResponse.data.data[0]);
         setUserToken(response.params.access_token);
       }
 
